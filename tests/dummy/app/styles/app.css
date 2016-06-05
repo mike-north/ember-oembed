@@ -1,0 +1,47 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.search-box {
+  background: white;
+  border-bottom: 2px solid black;
+  border-top: 2px solid black;
+}
+.title {
+  width: calc(100% - 40px);
+  font-size: 3rem;
+  font-family: sans-serif;
+  font-weight: 100;
+  margin: 40px 20px;
+}
+.search-box input {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 36px;
+  width: calc(100% - 40px);
+  margin: 0 20px;
+  border: none;
+  outline: none;
+}
+
+p {
+  color: #666;
+  width: calc(100% - 40px);
+  margin: 40px 20px;
+}
+
+.examples {
+  width: calc(100% - 40px);
+  margin: 40px 20px;
+}
+
+.examples button {
+  min–width: 200px;
+  height: 48px;
+  padding: 5px;
+  font-size: 1rem;
+  border: #333 solid 1px;
+  background-color: slategrey;
+  color: white;
+}
