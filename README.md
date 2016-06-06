@@ -1,4 +1,4 @@
-# Ember-oembed
+# ember-oembed [![Build Status](https://travis-ci.org/levanto-financial/ember-oembed.svg?branch=master)](https://travis-ci.org/levanto-financial/ember-oembed)
 
 [oEmbed](http://oembed.com) is a standard for embedding arbitrary content into something else. 
 
