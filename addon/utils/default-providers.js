@@ -13,10 +13,18 @@ export default {
     defaultParams: {
     }
   },
-  twitter: {
-    regex: /twitter\.com\/[\w]+\/status\//g,
-    providerUrl: 'https://publish.twitter.com/oembed',
+  flickr: {
+    regex: /flickr\.com\/photos\//g,
+    providerUrl: 'http://www.flickr.com/services/oembed/',
     defaultParams: {
+      format: 'json'
+    }
+  },
+  codepen: {
+    regex: /codepen\.io\/[\w]+\/pen\/[\w]+/g,
+    providerUrl: 'https://codepen.io/api/oembed',
+    defaultParams: {
+      format: 'json'
     }
   }
 };

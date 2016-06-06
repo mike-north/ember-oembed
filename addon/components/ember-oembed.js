@@ -92,7 +92,7 @@ export default Component.extend({
         }
       }
     }).then((data) => {
-      if (!this.isDestroyed && this.isDestroying) {
+      if (!this.isDestroyed && !this.isDestroying) {
         this.set('_oembedData', data);
       }
     });

@@ -10,12 +10,24 @@
   <h3>Examples:</h3>
   <button onclick={{action 'setup-example' "https://soundcloud.com/vaughan-1-1/this-is-what-crazy-looks-like"}}>SoundCloud</button>
   <button onclick={{action 'setup-example' "https://www.facebook.com/levantofinancial/posts/1353060554709816"}}>Facebook</button>
+  <button onclick={{action 'setup-example' "https://www.flickr.com/photos/bees/2341623661/"}}>Flickr</button>
+  <button onclick={{action 'setup-example' "https://codepen.io/julianshapiro/pen/OPbQKw"}}>Codepen</button>
 
 </div>
 
 <div class="embed">
   <div class="embed-content">
-    {{ember-oembed src=url}}
+    {{#if url.length}}
+      {{#ember-oembed src=url as |x|}}
+        <p>
+          <h3>{{x.title}}</h3>
+          {{x.description}}
+        </p>
+        {{{x.html}}}
+      {{/ember-oembed}}
+    {{else}}
+      <span class="no-url">No url found</span>
+    {{/if}}
   </div>
 </div>
 

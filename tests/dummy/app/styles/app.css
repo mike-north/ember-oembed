@@ -20,7 +20,7 @@ html, body {
   padding-bottom: 10px;
   font-size: 36px;
   width: calc(100% - 40px);
-  margin: 0 20px;
+  margin: 20px 40px;
   border: none;
   outline: none;
 }
@@ -44,4 +44,15 @@ p {
   border: #333 solid 1px;
   background-color: slategrey;
   color: white;
+}
+
+.embed {
+  font-family: sans-serif;
+  max-width: 600px;
+  margin: auto;
+}
+
+.embed  .embed-content {
+  margin: 20px;
+  box-shadow: 0 0 80px rgba(0,0,0, 0.8);
 }
