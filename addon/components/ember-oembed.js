@@ -65,30 +65,36 @@ export default Component.extend({
     return `${this.get('providerUrl')}?${queryString}`;
   }),
 
-  _fetchContentMetaData: function() {
-    var yql_url = 'https://query.yahooapis.com/v1/public/yql';
-    var url = 'http://myservice.com/data.json';
-    fetch(this.get('_contentUrl'), {
-      mode: 'cors',
-      params: JSON.stringify(this.get('providerParams'))
+  _fetchContentMetaData() {
+    let yqlUrl = 'https://query.yahooapis.com/v1/public/yql';
+    let body = {
+      'q': `SELECT * FROM json WHERE url="${this.get('_contentUrl')}"`,
+      'format': 'json',
+      'jsonCompat': 'new'
+    };
+    fetch(`${yqlUrl}?${Ember.$.param(body)}`, {
+      mode: 'cors'
     }).then((response) => {
-      let isXml = response.headers.map['content-type'][0].indexOf('application/xml') >= 0;
+      let [contentTypeHeader] = response.headers.map['content-type'];
+      let isXml = contentTypeHeader.indexOf('application/xml') >= 0;
       if (isXml) {
         return response.text().then((responseBody) => {
           let xmlDoc = Ember.$.parseXML(responseBody);
-          let oEmbedNode = Ember.$(xmlDoc).find('oembed')[0];
+          let [oEmbedNode] = Ember.$(xmlDoc).find('oembed');
           return xmlOembedParser.parse(oEmbedNode);
         });
       } else {
         let isJson = response.headers.map['content-type'][0].indexOf('application/json') >= 0;
         if (isJson) {
           return response.json().then((responseJson) => {
-            return jsonOembedParser.parse(responseJson);
+            return jsonOembedParser.parse((responseJson && responseJson.query && responseJson.query.results) ? responseJson.query.results.json : {});
           });
         }
       }
     }).then((data) => {
-      this.set('_oembedData', data);
+      if (!this.isDestroyed && this.isDestroying) {
+        this.set('_oembedData', data);
+      }
     });
   }
 });

@@ -1,8 +1,6 @@
-import Ember from 'ember';
-
 export default function oembedParserXmlStrategy(doc) {
   let transformed = {};
-  for (var i = 0; i < doc.childNodes.length; i++) {
+  for (let i = 0; i < doc.childNodes.length; i++) {
     let n = doc.childNodes.item(i);
     if (n.nodeType === 1) {
       switch (n.getAttribute('type')) {

@@ -6,4 +6,4 @@ export default Ember.Controller.extend({
       this.set('url', url);
     }
   }
-})
+});

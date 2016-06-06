@@ -12,5 +12,11 @@ export default {
     providerUrl: 'https://www.facebook.com/plugins/post/oembed.json',
     defaultParams: {
     }
+  },
+  twitter: {
+    regex: /twitter\.com\/[\w]+\/status\//g,
+    providerUrl: 'https://publish.twitter.com/oembed',
+    defaultParams: {
+    }
   }
-}
+};

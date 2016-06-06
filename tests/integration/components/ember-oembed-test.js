@@ -5,20 +5,34 @@ moduleForComponent('ember-oembed', 'Integration | Component | ember oembed', {
   integration: true
 });
 
-test('it renders', function(assert) {
+test('inline mode', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
+  let done = assert.async();
 
-  this.render(hbs`{{ember-oembed}}`);
+  this.render(hbs`{{ember-oembed src='http://soundcloud.com/forss/flickermood'}}`);
 
   assert.equal(this.$().text().trim(), '');
 
+  setTimeout(() => {
+    done();
+  }, 200);
+});
+
+test('block mode', function(assert) {
+  // Set any properties with this.set('myProperty', 'value');
+  // Handle any actions with this.on('myAction', function(val) { ... });
+  let done = assert.async();
+
   // Template block usage:
   this.render(hbs`
-    {{#ember-oembed}}
-      template block text
+    {{#ember-oembed src='http://soundcloud.com/forss/flickermood' as |x|}}
+      {{x.html}}
     {{/ember-oembed}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  setTimeout(() => {
+    assert.equal(this.$().text().trim(), '');
+    done();
+  }, 1000);
 });
