@@ -39,7 +39,7 @@ Using ember-oembed is as easy as using an `<img>` tag.
 ```
 
 
-#### Adding a provider that's not already included with this addon**
+#### Adding a provider that's not already included with this addon
 
 **config/environment.js**
 ```js
