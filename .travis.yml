@@ -24,7 +24,7 @@ install:
 - npm install
 - bower install
 script:
-- ember try $EMBER_TRY_SCENARIO test
+- ember try $EMBER_TRY_SCENARIO test --skip-cleanup
 deploy:
   provider: heroku
   api_key:
