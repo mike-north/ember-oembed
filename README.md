@@ -40,7 +40,7 @@ Using ember-oembed is as easy as using an `<img>` tag.
 ```
 
 
-**Adding a provider that's not already included with this addon**
+#### Adding a provider that's not already included with this addon**
 
 **config/environment.js**
 ```js
@@ -60,6 +60,10 @@ var ENV = {
   ...
 }
 ```
+
+This would result in the addon attempting to fetch oEmbed info from
+`http://mysite.com/oembed?url=http://mysite.com/thing/12345&format=json`
+
 
 ## Developing this Addon
 
