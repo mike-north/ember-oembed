@@ -24,7 +24,7 @@ install:
 - npm install
 - bower install
 script:
-- ember try $EMBER_TRY_SCENARIO test
+- ember try $EMBER_TRY_SCENARIO test --skip-cleanup
 deploy:
   provider: heroku
   api_key:
@@ -32,3 +32,6 @@ deploy:
   app: ember-oembed-demo
   on:
     repo: levanto-financial/ember-oembed
+notifications:
+  slack:
+    secure: eK8GhPJsG//Ez4PllQ40Uf5Jb89P9Tl0KlwqsCPOijt8I68jRsQ1Low6JLBaFuC+GNR2ZwsfC5ARocISTOXYTEYfDyJVM60rdLF8AZ3mN6xjkPjdoUBoh5UgcnPiBJO/apD3VyuiqiDfcIF6x4Kzgk3Rj2DE7BzHuX9fKSF6xKQV0YWxq9177koJmyPl8j1ZlviKR/Ob6HBV0bumBIdl7tfNaU6QgrK1k37oaTwYvRQQhxYwX1ekj1y8AKI+hOmyGm0L+nWkkr8KmJxhTU/IC7Kn7cGGRNyTH51tqX476et+LbLhGEgx7Xs3hU6bXX/2V4ePUtUlVBd794FBZEvhmtp7qWyp6IlV6kQC6a6zimXiyoTUUfb+3F1zPdqfgtACe3y75d8Ckxmpoi2vVg1lMd4L8wNYIoA7LqnMWGO/LPaJ+4kZ8EjfhTnFZtm7vtJ0TxEtXKnvFx/YhVRC1686rqxj67q2YRbQnJ3v66ZHEA17Nw4H57STdrtUhcsQXOcxuFsbv8H9HVdRWZQdyYPJb16u2o8Dr6Jcsx71sOM5iMNe5VvuK38csw08pgZ4jfZgYYnVVN2sh/izpwEird3nBdMbrMlzXLXF/rBo5RObTuDcFdzu6KOr/nFlYD77SQ01tt1qXvVO0qEmNRtkkCAgltEq07uWUoN+O+Qk1ybXgDM=
