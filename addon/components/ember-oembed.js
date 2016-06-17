@@ -1,9 +1,22 @@
 import Ember from 'ember';
 import layout from '../templates/components/ember-oembed';
 import fetch from 'ember-network/fetch';
-import { xmlOembedParser, jsonOembedParser } from 'ember-oembed/utils/oembed-parser';
+import {
+  xmlOembedParser,
+  jsonOembedParser
+} from 'ember-oembed/utils/oembed-parser';
 
-const { Component, computed, inject, run: { debounce, scheduleOnce }, observer } = Ember;
+const {
+  Component,
+  computed,
+  inject,
+  run: {
+    debounce,
+    scheduleOnce
+  },
+  observer,
+  $
+} = Ember;
 
 export default Component.extend({
   oembed: inject.service(),
@@ -72,15 +85,15 @@ export default Component.extend({
       'format': 'json',
       'jsonCompat': 'new'
     };
-    fetch(`${yqlUrl}?${Ember.$.param(body)}`, {
+    fetch(`${yqlUrl}?${$.param(body)}`, {
       mode: 'cors'
     }).then((response) => {
       let [contentTypeHeader] = response.headers.map['content-type'];
       let isXml = contentTypeHeader.indexOf('application/xml') >= 0;
       if (isXml) {
         return response.text().then((responseBody) => {
-          let xmlDoc = Ember.$.parseXML(responseBody);
-          let [oEmbedNode] = Ember.$(xmlDoc).find('oembed');
+          let xmlDoc = $.parseXML(responseBody);
+          let [oEmbedNode] = $(xmlDoc).find('oembed');
           return xmlOembedParser.parse(oEmbedNode);
         });
       } else {
