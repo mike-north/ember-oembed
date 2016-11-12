@@ -6,6 +6,15 @@ function findProvider(url, providers) {
   for (let i in providers) {
     if (providers.hasOwnProperty(i)) {
       let prov = providers[i];
+      if(prov.regex.hasOwnProperty('pattern')) {
+        if(prov.regex.hasOwnProperty('flags')) {
+          prov.regex = new RegExp(prov.regex.pattern, prov.regex.flags);
+        }
+        else {
+          prov.regex = new RegExp(prov.regex.pattern);
+        }
+      }
+
       if (prov.regex.test(url)) {
         return prov;
       }
