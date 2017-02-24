@@ -36,7 +36,7 @@
     "ember-suave": "4.0.0",
     "ember-sublime": "0.0.9",
     "ember-try": "^0.2.2",
-    "loader.js": "^4.0.1"
+    "loader.js": "^4.2.1"
   },
   "keywords": [
     "ember-addon",
