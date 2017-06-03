@@ -2,9 +2,7 @@ import Ember from 'ember';
 import oEmbedParserXmlStrategy from './oembed-parser-xml-strategy';
 import oEmbedParserJsonStrategy from './oembed-parser-json-strategy';
 
-// jscs:disable disallowDirectPropertyAccess
-const Obj = Ember.Object;
-// jscs:enable disallowDirectPropertyAccess
+const { Object: Obj } = Ember;
 
 const OEmbedParser = Obj.extend({
   parse(x) {

@@ -1,37 +1,38 @@
 language: node_js
 node_js:
-- '0.12'
+- '6'
 sudo: false
 cache:
-  directories:
-  - node_modules
+  yarn: true
 env:
-- EMBER_TRY_SCENARIO=default
-- EMBER_TRY_SCENARIO=ember-1.13
+- EMBER_TRY_SCENARIO=ember-lts-2.4
+- EMBER_TRY_SCENARIO=ember-lts-2.8
 - EMBER_TRY_SCENARIO=ember-release
 - EMBER_TRY_SCENARIO=ember-beta
 - EMBER_TRY_SCENARIO=ember-canary
+- EMBER_TRY_SCENARIO=ember-default
 matrix:
   fast_finish: true
   allow_failures:
   - env: EMBER_TRY_SCENARIO=ember-canary
 before_install:
-- export PATH=/usr/local/phantomjs-2.0.0/bin:$PATH
-- npm config set spin false
-- npm install -g npm@^2
+- curl -o- -L https://yarnpkg.com/install.sh | bash
+- export PATH=$HOME/.yarn/bin:$PATH
+- yarn global add greenkeeper-lockfile@1
+- yarn global add phantomjs-prebuilt
+- phantomjs --version
+
+before_script: greenkeeper-lockfile-update
+after_script: greenkeeper-lockfile-upload
+
 install:
-- npm install -g bower
-- npm install
-- bower install
+- yarn install --no-lockfile
 script:
-- ember try $EMBER_TRY_SCENARIO test --skip-cleanup
+- node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO test --skip-cleanup
 deploy:
   provider: heroku
   api_key:
-    secure: IuwCtz8cErrHP2zKFHXzj8BbfzonYrq8eJVzCnMfR+XJXc3sQucUl6AaYbeRdDtTn6hE3moSejLuAFXBOH0fpDVT1fnx5TnU6l0ACyNo6+4jBVLBMlKs2m9jsozyJWNjtCnNteAwkLR0HBaJaCEGgwxbBeVH26V7ObL9Wra76wCVexqSjnJJ0F5qYNUtcCrRKuyEDaSlx4EgTbCvgXkyYHJCqIMF9KkvPHFAAl9lxuc49ejHUKUnvjn+BgokiDMj0quWwdsMUBFcogSOKT3HACpqDOzQctr0NJefvEFpPzGpeuCzHkNBmQkJNANNfFEmb2xOp6ByQhPMX78oaSPIWmPaChh3ELHHRRN86MI8triW6/Y4qKXHJ3glPPVRJpeQlzWa6xENZQXzhpCMumZ6A4dEN9NVf/xjocCZ0RYVYaBCnBkHllgdtuAJSq5B3KetE8PUzrR2bKrBV5npOEqbkN24Db3Ql466dX+u6x+nULAEViLQMgwDa4BsycH7m5+2BQKQx5wjUOBRhW5I01piey/tqawXgTD1NElXSGUPmcrhpEVgvh/PrEaS68bOz9ABXHxYPFzuCiTvjrdIlFrgssFFL+/xLiDplZI4sDKjFJeBbnP31DzFArldbfdRmt3iQx4Gq9sFro47e2F6re3vR3X77IciszayCn6DMqo5lKM=
+    secure: WjnO05P979UjfM/HZhuCqLho4x1axmz11uL2AJPyJiCx05LHEty7Nd4E9CZROAQSVJTQsDRmjEqqAYTKk4O6NhPPRE8joyW/GKplUMYpguo4YPxKE1UfPYof4+CPWmXaG82nOvgeasUPu5dKXQqpIduBAVjQrudFXPezBtqLrrWc/pfmemqjcyjHGZRsmPVsFo8pW8P6Psbd8/v8jmsLFM9etC5jUmRnYnar4P13M2cWy3LPl4Yd8mDtqCdBqpqsDAG53symLk6eXKNd5ANkePgOq3WvaUgTYxnqQNrmDNKHdt1pCUVruKPBKS6wudcLzLufoxZBVOfjXck4XB42WJieE9mHUECkJOp/JuGnCsiJUW3AeN8mx7i8+YJAQSEvIKxvo9o431ANKBhkFKkxw2PahxKPKq1+su21QR2P2+nbbKmjJxHG663nULr0rEzdNCNQmSqwmRxUAmFgL2P/WIkFxGGVtGehC31lMEwXuNQAG/JKdPJOYstdsk7SWfRVz+SeMqH+C+DxikkHy9BhZHnyIxJag4WlNvHEWTUNLirGLE09kQpObrb+Mw0pOMdzXox6jX3ltZlnTUjVXuHikg2wPt4VWj1cC0SZOqHDgpiylu0pgsNDV+oJLEXtRT/L5t0ua82VWfhSknjScJ1Ior4nXD/uetVcsP4dLGyo45Q=
   app: ember-oembed-demo
   on:
-    repo: levanto-financial/ember-oembed
-notifications:
-  slack:
-    secure: eK8GhPJsG//Ez4PllQ40Uf5Jb89P9Tl0KlwqsCPOijt8I68jRsQ1Low6JLBaFuC+GNR2ZwsfC5ARocISTOXYTEYfDyJVM60rdLF8AZ3mN6xjkPjdoUBoh5UgcnPiBJO/apD3VyuiqiDfcIF6x4Kzgk3Rj2DE7BzHuX9fKSF6xKQV0YWxq9177koJmyPl8j1ZlviKR/Ob6HBV0bumBIdl7tfNaU6QgrK1k37oaTwYvRQQhxYwX1ekj1y8AKI+hOmyGm0L+nWkkr8KmJxhTU/IC7Kn7cGGRNyTH51tqX476et+LbLhGEgx7Xs3hU6bXX/2V4ePUtUlVBd794FBZEvhmtp7qWyp6IlV6kQC6a6zimXiyoTUUfb+3F1zPdqfgtACe3y75d8Ckxmpoi2vVg1lMd4L8wNYIoA7LqnMWGO/LPaJ+4kZ8EjfhTnFZtm7vtJ0TxEtXKnvFx/YhVRC1686rqxj67q2YRbQnJ3v66ZHEA17Nw4H57STdrtUhcsQXOcxuFsbv8H9HVdRWZQdyYPJb16u2o8Dr6Jcsx71sOM5iMNe5VvuK38csw08pgZ4jfZgYYnVVN2sh/izpwEird3nBdMbrMlzXLXF/rBo5RObTuDcFdzu6KOr/nFlYD77SQ01tt1qXvVO0qEmNRtkkCAgltEq07uWUoN+O+Qk1ybXgDM=
+    repo: mike-north/ember-oembed
