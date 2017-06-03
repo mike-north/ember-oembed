@@ -1,4 +1,4 @@
-# ember-oembed [![Build Status](https://travis-ci.org/levanto-financial/ember-oembed.svg?branch=master)](https://travis-ci.org/levanto-financial/ember-oembed) [![Ember Observer Score](https://emberobserver.com/badges/ember-oembed.svg)](https://emberobserver.com/addons/ember-oembed) [![npm version](https://badge.fury.io/js/ember-oembed.svg)](https://badge.fury.io/js/ember-oembed)
+# ember-oembed [![Build Status](https://travis-ci.org/mike-north/ember-oembed.svg?branch=master)](https://travis-ci.org/mike-north/ember-oembed) [![Ember Observer Score](https://emberobserver.com/badges/ember-oembed.svg)](https://emberobserver.com/addons/ember-oembed) [![npm version](https://badge.fury.io/js/ember-oembed.svg)](https://badge.fury.io/js/ember-oembed)
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/mike-north/ember-oembed.svg)](https://greenkeeper.io/)
 
