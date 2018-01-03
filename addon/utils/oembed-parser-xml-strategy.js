@@ -14,7 +14,6 @@ export default function oembedParserXmlStrategy(doc) {
           transformed[n.tagName] = n.textContent;
           break;
       }
-
     }
   }
   return transformed;

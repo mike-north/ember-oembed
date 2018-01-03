@@ -10,8 +10,7 @@ export default {
   'facebook-post': {
     regex: /facebook\.com\/[\w]+\/posts\//g,
     providerUrl: 'https://www.facebook.com/plugins/post/oembed.json',
-    defaultParams: {
-    }
+    defaultParams: {}
   },
   flickr: {
     regex: /flickr\.com\/photos\//g,

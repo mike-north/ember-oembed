@@ -16,7 +16,4 @@ const jsonOembedParser = OEmbedParser.create({
   strategy: oEmbedParserJsonStrategy
 });
 
-export {
-  xmlOembedParser,
-  jsonOembedParser
-};
+export { xmlOembedParser, jsonOembedParser };
