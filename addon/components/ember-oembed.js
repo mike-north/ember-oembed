@@ -1,4 +1,8 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
+import { scheduleOnce, debounce } from '@ember/runloop';
+import { observer, computed } from '@ember/object';
+import $ from 'jquery';
 import layout from '../templates/components/ember-oembed';
 import fetch from 'ember-network/fetch';
 import {
@@ -6,20 +10,8 @@ import {
   jsonOembedParser
 } from 'ember-oembed/utils/oembed-parser';
 
-const {
-  Component,
-  computed,
-  inject,
-  run: {
-    debounce,
-    scheduleOnce
-  },
-  observer,
-  $
-} = Ember;
-
 export default Component.extend({
-  oembed: inject.service(),
+  oembed: service(),
   classNames: ['ember-oembed'],
   layout,
   attributeBindings: ['_styleString:style'],
