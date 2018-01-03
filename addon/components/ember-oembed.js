@@ -1,32 +1,21 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
+import { scheduleOnce, debounce } from '@ember/runloop';
+import { observer, computed } from '@ember/object';
+import $ from 'jquery';
 import layout from '../templates/components/ember-oembed';
 import fetch from 'ember-network/fetch';
-import {
-  xmlOembedParser,
-  jsonOembedParser
-} from 'ember-oembed/utils/oembed-parser';
-
-const {
-  Component,
-  computed,
-  inject,
-  run: {
-    debounce,
-    scheduleOnce
-  },
-  observer,
-  $
-} = Ember;
+import { xmlOembedParser, jsonOembedParser } from 'ember-oembed/utils/oembed-parser';
 
 export default Component.extend({
-  oembed: inject.service(),
+  oembed: service(),
   classNames: ['ember-oembed'],
   layout,
   attributeBindings: ['_styleString:style'],
 
   init() {
     this._super(...arguments);
-    this.set('style', this.attrs.style || {});
+    this.set('style', this.style || {});
   },
 
   didInsertElement() {
@@ -55,7 +44,7 @@ export default Component.extend({
         sProps.push([i, s[i]]);
       }
     }
-    return sProps.map((x) => `${x[0]}: ${x[1]}`).join('; ');
+    return sProps.map(x => `${x[0]}: ${x[1]}`).join('; ');
   }),
 
   _updateContentMetaData: observer('_contentUrl', function() {
@@ -71,9 +60,14 @@ export default Component.extend({
         queryParamList.push([k, queryParams[k]]);
       }
     }
-    let queryString = queryParamList.length > 0 ? queryParamList.map((x) => {
-      return `${x[0]}=${x[1]}`;
-    }).join('&') : '';
+    let queryString =
+      queryParamList.length > 0
+        ? queryParamList
+            .map(x => {
+              return `${x[0]}=${x[1]}`;
+            })
+            .join('&')
+        : '';
 
     return `${this.get('providerUrl')}?${queryString}`;
   }),
@@ -81,33 +75,37 @@ export default Component.extend({
   _fetchContentMetaData() {
     let yqlUrl = 'https://query.yahooapis.com/v1/public/yql';
     let body = {
-      'q': `SELECT * FROM json WHERE url="${this.get('_contentUrl')}"`,
-      'format': 'json',
-      'jsonCompat': 'new'
+      q: `SELECT * FROM json WHERE url="${this.get('_contentUrl')}"`,
+      format: 'json',
+      jsonCompat: 'new'
     };
     fetch(`${yqlUrl}?${$.param(body)}`, {
       mode: 'cors'
-    }).then((response) => {
-      let [contentTypeHeader] = response.headers.map['content-type'];
-      let isXml = contentTypeHeader.indexOf('application/xml') >= 0;
-      if (isXml) {
-        return response.text().then((responseBody) => {
-          let xmlDoc = $.parseXML(responseBody);
-          let [oEmbedNode] = $(xmlDoc).find('oembed');
-          return xmlOembedParser.parse(oEmbedNode);
-        });
-      } else {
-        let isJson = response.headers.map['content-type'][0].indexOf('application/json') >= 0;
-        if (isJson) {
-          return response.json().then((responseJson) => {
-            return jsonOembedParser.parse((responseJson && responseJson.query && responseJson.query.results) ? responseJson.query.results.json : {});
+    })
+      .then(response => {
+        let [contentTypeHeader] = response.headers.map['content-type'];
+        let isXml = contentTypeHeader.indexOf('application/xml') >= 0;
+        if (isXml) {
+          return response.text().then(responseBody => {
+            let xmlDoc = $.parseXML(responseBody);
+            let [oEmbedNode] = $(xmlDoc).find('oembed');
+            return xmlOembedParser.parse(oEmbedNode);
           });
+        } else {
+          let isJson = response.headers.map['content-type'][0].indexOf('application/json') >= 0;
+          if (isJson) {
+            return response.json().then(responseJson => {
+              return jsonOembedParser.parse(
+                responseJson && responseJson.query && responseJson.query.results ? responseJson.query.results.json : {}
+              );
+            });
+          }
         }
-      }
-    }).then((data) => {
-      if (!this.isDestroyed && !this.isDestroying) {
-        this.set('_oembedData', data);
-      }
-    });
+      })
+      .then(data => {
+        if (!this.isDestroyed && !this.isDestroying) {
+          this.set('_oembedData', data);
+        }
+      });
   }
 });

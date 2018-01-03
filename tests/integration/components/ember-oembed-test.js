@@ -12,7 +12,12 @@ test('inline mode', function(assert) {
 
   this.render(hbs`{{ember-oembed src='http://soundcloud.com/forss/flickermood'}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.equal(
+    this.$()
+      .text()
+      .trim(),
+    ''
+  );
 
   setTimeout(() => {
     done();
@@ -32,7 +37,12 @@ test('block mode', function(assert) {
   `);
 
   setTimeout(() => {
-    assert.equal(this.$().text().trim(), '');
+    assert.equal(
+      this.$()
+        .text()
+        .trim(),
+      ''
+    );
     done();
   }, 1000);
 });

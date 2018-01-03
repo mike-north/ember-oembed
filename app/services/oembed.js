@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Service from '@ember/service';
 import config from '../config/environment';
 import defaultProviders from 'ember-oembed/utils/default-providers';
 
@@ -13,7 +13,7 @@ function findProvider(url, providers) {
   }
 }
 
-export default Ember.Service.extend({
+export default Service.extend({
   _configProviderForUrl(url) {
     let c = config;
     if (!c.oembed || !c.oembed.providers) {

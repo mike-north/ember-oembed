@@ -1,8 +1,6 @@
-import Ember from 'ember';
+import Obj from '@ember/object';
 import oEmbedParserXmlStrategy from './oembed-parser-xml-strategy';
 import oEmbedParserJsonStrategy from './oembed-parser-json-strategy';
-
-const { Object: Obj } = Ember;
 
 const OEmbedParser = Obj.extend({
   parse(x) {
@@ -18,7 +16,4 @@ const jsonOembedParser = OEmbedParser.create({
   strategy: oEmbedParserJsonStrategy
 });
 
-export {
-  xmlOembedParser,
-  jsonOembedParser
-};
+export { xmlOembedParser, jsonOembedParser };
