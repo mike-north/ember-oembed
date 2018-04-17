@@ -32,7 +32,7 @@
     "ember-data": "^2.5.0",
     "ember-disable-prototype-extensions": "^1.1.0",
     "ember-export-application-global": "^2.0.0",
-    "ember-load-initializers": "^1.0.0",
+    "ember-load-initializers": "^1.1.0",
     "ember-network": "0.3.1",
     "ember-resolver": "^4.1.0",
     "ember-source": "^2.13.3",
