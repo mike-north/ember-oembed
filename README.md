@@ -51,7 +51,10 @@ var ENV = {
   oembed: {
     providers: {
       mysite: {
-        regex: /www.mysite.com\/thing/g,
+        regex: {
+          pattern: 'www.mysite.com\/thing',
+          flags: 'g',
+        }
         providerUrl: 'http://mysite.com/oembed',
         defaultParams: {
           format: 'json'
