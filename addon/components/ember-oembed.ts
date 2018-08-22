@@ -7,7 +7,7 @@ import { getOwner } from '@ember/application';
 import { Object as JSONObject } from 'json-typescript';
 
 import { computed } from '@ember-decorators/object';
-import { layout, classNames } from '@ember-decorators/component';
+import { layout, classNames, attribute } from '@ember-decorators/component';
 import { Provider } from 'ember-oembed/utils/oembed';
 
 @layout(tmpl)
@@ -49,6 +49,7 @@ export default class EmberOembed extends Component {
     return provider ? provider.defaultParams : null;
   }
 
+  @attribute('style')
   @computed('style')
   get _styleString() {
     let s: JSONObject = this.get('style');
