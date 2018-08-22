@@ -1,5 +1,5 @@
-export default function oembedParserXmlStrategy(doc) {
-  let transformed = {};
+export default function oembedParserXmlStrategy(doc: any) {
+  let transformed: any = {};
   for (let i = 0; i < doc.childNodes.length; i++) {
     let n = doc.childNodes.item(i);
     if (n.nodeType === 1) {
