@@ -1,43 +1,57 @@
-import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { scheduleOnce, debounce } from '@ember/runloop';
-import { observer, computed } from '@ember/object';
-import $ from 'jquery';
-import layout from '../templates/components/ember-oembed';
-import fetch from 'ember-network/fetch';
+import tmpl from 'ember-oembed/templates/components/ember-oembed';
+import fetch from 'fetch';
 import { xmlOembedParser, jsonOembedParser } from 'ember-oembed/utils/oembed-parser';
+import { getOwner } from '@ember/application';
+import { Object as JSONObject } from 'json-typescript';
 
-export default Component.extend({
-  oembed: service(),
-  classNames: ['ember-oembed'],
-  layout,
-  attributeBindings: ['_styleString:style'],
+import { computed } from '@ember-decorators/object';
+import { layout, classNames } from '@ember-decorators/component';
+import { Provider } from 'ember-oembed/utils/oembed';
 
-  init() {
-    this._super(...arguments);
-    this.set('style', this.style || {});
-  },
+@layout(tmpl)
+@classNames('ember-oembed')
+export default class EmberOembed extends Component {
+  style!: JSONObject;
+  src!: string;
+  _updateContentMetaData: any;
+  _oembedData?: any;
+  constructor() {
+    super(...arguments);
+    if (typeof this.style === 'undefined') {
+      this.style = {};
+    }
+    this.addObserver('_contentUrl', () => {
+      debounce(this, '_fetchContentMetaData', 200);
+    });
+  }
 
   didInsertElement() {
-    this._super(...arguments);
+    super.didInsertElement();
     scheduleOnce('afterRender', this, this._fetchContentMetaData);
-  },
-  provider: computed('src', function() {
-    return this.get('oembed').providerForUrl(this.get('src'));
-  }),
+  }
 
-  providerUrl: computed('provider', function() {
+  @computed('src')
+  get provider(): Provider {
+    return getOwner(this).lookup('ember-oembed:provider-for-url')(this.get('src'));
+  }
+
+  @computed('provider')
+  get providerUrl(): string | null {
     let provider = this.get('provider');
     return provider ? provider.providerUrl : null;
-  }),
+  }
 
-  providerParams: computed('provider', function() {
+  @computed('provider')
+  get providerParams(): Provider['defaultParams'] | null {
     let provider = this.get('provider');
     return provider ? provider.defaultParams : null;
-  }),
+  }
 
-  _styleString: computed('style', function() {
-    let s = this.get('style');
+  @computed('style')
+  get _styleString() {
+    let s: JSONObject = this.get('style');
     let sProps = [];
     for (let i in s) {
       if (s.hasOwnProperty(i)) {
@@ -45,14 +59,12 @@ export default Component.extend({
       }
     }
     return sProps.map(x => `${x[0]}: ${x[1]}`).join('; ');
-  }),
+  }
 
-  _updateContentMetaData: observer('_contentUrl', function() {
-    debounce(this, this._fetchContentMetaData, 200);
-  }),
-
-  _contentUrl: computed('providerUrl', 'src', function() {
-    let queryParams = JSON.parse(JSON.stringify(this.get('providerParams'))) || {};
+  @computed('providerUrl', 'src')
+  get _contentUrl() {
+    let params: any = this.get('providerParams');
+    let queryParams = JSON.parse(JSON.stringify(params)) || {};
     queryParams.url = this.get('src');
     let queryParamList = [];
     for (let k in queryParams) {
@@ -68,22 +80,22 @@ export default Component.extend({
             })
             .join('&')
         : '';
-
-    return `${this.get('providerUrl')}?${queryString}`;
-  }),
-
-  _fetchContentMetaData() {
+    const url: string = this.get('providerUrl') || '';
+    return `${url}?${queryString}`;
+  }
+  async _fetchContentMetaData() {
     let yqlUrl = 'https://query.yahooapis.com/v1/public/yql';
     let body = {
       q: `SELECT * FROM json WHERE url="${this.get('_contentUrl')}"`,
       format: 'json',
       jsonCompat: 'new'
     };
-    fetch(`${yqlUrl}?${$.param(body)}`, {
+    let url = `${yqlUrl}?${$.param(body)}`;
+    fetch(url, {
       mode: 'cors'
     })
-      .then(response => {
-        let [contentTypeHeader] = response.headers.map['content-type'];
+      .then((response: Response & { headers: any }) => {
+        let contentTypeHeader = response.headers.map['content-type'];
         let isXml = contentTypeHeader.indexOf('application/xml') >= 0;
         if (isXml) {
           return response.text().then(responseBody => {
@@ -92,20 +104,20 @@ export default Component.extend({
             return xmlOembedParser.parse(oEmbedNode);
           });
         } else {
-          let isJson = response.headers.map['content-type'][0].indexOf('application/json') >= 0;
+          let isJson = contentTypeHeader.indexOf('application/json') >= 0;
           if (isJson) {
             return response.json().then(responseJson => {
               return jsonOembedParser.parse(
                 responseJson && responseJson.query && responseJson.query.results ? responseJson.query.results.json : {}
               );
             });
-          }
+          } else return null;
         }
       })
-      .then(data => {
+      .then((data: JSONObject) => {
         if (!this.isDestroyed && !this.isDestroying) {
           this.set('_oembedData', data);
         }
       });
   }
-});
+}

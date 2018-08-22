@@ -1,4 +1,6 @@
-export default {
+import { Provider } from './oembed';
+
+const defaultProviders: { [k: string]: Provider } = {
   soundcloud: {
     regex: /soundcloud\.com/g,
     providerUrl: 'http://soundcloud.com/oembed',
@@ -27,3 +29,5 @@ export default {
     }
   }
 };
+
+export default defaultProviders;
