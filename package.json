@@ -17,7 +17,7 @@
     "prepublishOnly": "ember ts:precompile",
     "postpublish": "ember ts:clean"
   },
-  "repository": "https://github.com/levanto-financial/ember-oembed.git",
+  "repository": "https://github.com/mike-north/ember-oembed.git",
   "engines": {
     "node": "6.* || 8.* || >= 10.*"
   },
