@@ -1,60 +1,44 @@
 language: node_js
 node_js:
-  - '8'
-
+- '8'
 sudo: false
 dist: trusty
-
 addons:
   chrome: stable
-
 cache:
   yarn: true
-
 env:
   global:
-    # See https://git.io/vdao3 for details.
-    - JOBS=1
+  - JOBS=1
   matrix:
-    # we recommend new addons test the current and previous LTS
-    # as well as latest stable release (bonus points to beta/canary)
-    - EMBER_TRY_SCENARIO=ember-lts-2.12
-    - EMBER_TRY_SCENARIO=ember-lts-2.16
-    - EMBER_TRY_SCENARIO=ember-lts-2.18
-    - EMBER_TRY_SCENARIO=ember-release
-    - EMBER_TRY_SCENARIO=ember-beta
-    - EMBER_TRY_SCENARIO=ember-canary
-    - EMBER_TRY_SCENARIO=ember-default
-
+  - EMBER_TRY_SCENARIO=ember-lts-2.12
+  - EMBER_TRY_SCENARIO=ember-lts-2.16
+  - EMBER_TRY_SCENARIO=ember-lts-2.18
+  - EMBER_TRY_SCENARIO=ember-release
+  - EMBER_TRY_SCENARIO=ember-beta
+  - EMBER_TRY_SCENARIO=ember-canary
+  - EMBER_TRY_SCENARIO=ember-default
 matrix:
   fast_finish: true
   allow_failures:
-    - env: EMBER_TRY_SCENARIO=ember-canary
-
+  - env: EMBER_TRY_SCENARIO=ember-canary
 before_install:
-  - curl -o- -L https://yarnpkg.com/install.sh | bash
-  - export PATH=$HOME/.yarn/bin:$PATH
-
+- curl -o- -L https://yarnpkg.com/install.sh | bash
+- export PATH=$HOME/.yarn/bin:$PATH
 install:
-  - yarn install --no-lockfile --non-interactive
-
+- yarn install --no-lockfile --non-interactive
 script:
-  - yarn lint:js
-  # Usually, it's ok to finish the test scenario without reverting
-  #  to the addon's original dependency state, skipping "cleanup".
-  - node_modules/.bin/ember try $EMBER_TRY_SCENARIO --skip-cleanup
-
+- yarn lint:js
+- node_modules/.bin/ember try $EMBER_TRY_SCENARIO --skip-cleanup
 after_success:
-  - npm run travis-deploy-once "npm run semantic-release"
-
+- npm run travis-deploy-once "npm run semantic-release"
 branches:
   except:
-    - /^v\d+\.\d+\.\d+$/
-
+  - "/^v\\d+\\.\\d+\\.\\d+$/"
 deploy:
   provider: heroku
   api_key:
-    secure: WjnO05P979UjfM/HZhuCqLho4x1axmz11uL2AJPyJiCx05LHEty7Nd4E9CZROAQSVJTQsDRmjEqqAYTKk4O6NhPPRE8joyW/GKplUMYpguo4YPxKE1UfPYof4+CPWmXaG82nOvgeasUPu5dKXQqpIduBAVjQrudFXPezBtqLrrWc/pfmemqjcyjHGZRsmPVsFo8pW8P6Psbd8/v8jmsLFM9etC5jUmRnYnar4P13M2cWy3LPl4Yd8mDtqCdBqpqsDAG53symLk6eXKNd5ANkePgOq3WvaUgTYxnqQNrmDNKHdt1pCUVruKPBKS6wudcLzLufoxZBVOfjXck4XB42WJieE9mHUECkJOp/JuGnCsiJUW3AeN8mx7i8+YJAQSEvIKxvo9o431ANKBhkFKkxw2PahxKPKq1+su21QR2P2+nbbKmjJxHG663nULr0rEzdNCNQmSqwmRxUAmFgL2P/WIkFxGGVtGehC31lMEwXuNQAG/JKdPJOYstdsk7SWfRVz+SeMqH+C+DxikkHy9BhZHnyIxJag4WlNvHEWTUNLirGLE09kQpObrb+Mw0pOMdzXox6jX3ltZlnTUjVXuHikg2wPt4VWj1cC0SZOqHDgpiylu0pgsNDV+oJLEXtRT/L5t0ua82VWfhSknjScJ1Ior4nXD/uetVcsP4dLGyo45Q=
+    secure: JvB+Ct0sdg6e5ERIu34E/5WFFBAgCpqgW7pxY3z+nCXWEtCKUwWyt+Y66yU5wjSDHlDLVYnudTmGNQMUvyKiZ/OQ0bJ7FU6OoIrcfoKGqA9+REDqkPUEiQQ0/eYNwoM+JQ2qxP4RXbb8u/ghG4S4IYbIEEMAVK75VKiHj7Kp5fVRtdwK2PkcheFz3opvCIb5K1mARLbz00sRIXEO/UjHtlgJFMHTtXSAYXJhPyKbE6JMrzc6UrGjukGaFHgbNjI3p39WIUceWE+Af1lWCbLQQ79qHYJHnr0pVuLuqXXSMO/SukaOwArAnFb4RVtw6n/7+ivwEj/2wLbMLs+c1ItEymws96Os5D8o9LfH0RrvO0OZBT/OD0jC+AXGbszsfZ0K9ONFQtfUILIe2dRxBikBGQyAlfs4XUImHKPksDo6lAqgrHWYyIaZS7EnWgjW2vodMHKqr9UVbGEDv03R43QWS+WUkODroW6dk3e7kxWmzy+3Fehimy6YQhlY48M6oGGQxgq4tr4FF2ersJpe4Hwv2MJdC10NNm1YPNpzAxw6PStSaLjB0NjgPLC+PfzkIYZTxOJRzp+cnI83l0SD4CZzLh/F7wyV/8Er0y4vSXbsFbwTvK1Jtvvs0e4k2d6R2AkVlVGOawshYqgMdOYTUVhRLMVWkrGnrB9wSf0P9qlDWB0=
   app: ember-oembed-demo
   on:
     repo: mike-north/ember-oembed
