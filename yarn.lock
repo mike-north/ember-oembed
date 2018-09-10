@@ -1188,7 +1188,7 @@ async-limiter@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/async-limiter/-/async-limiter-1.0.0.tgz#78faed8c3d074ab81f22b4e985d79e8738f720f8"
 
-async-promise-queue@^1.0.3:
+async-promise-queue@^1.0.3, async-promise-queue@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/async-promise-queue/-/async-promise-queue-1.0.4.tgz#308baafbc74aff66a0bb6e7f4a18d4fe8434440c"
   dependencies:
@@ -2429,10 +2429,11 @@ broccoli-templater@^2.0.1:
     rimraf "^2.6.2"
     walk-sync "^0.3.2"
 
-broccoli-uglify-sourcemap@^2.0.0:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/broccoli-uglify-sourcemap/-/broccoli-uglify-sourcemap-2.0.1.tgz#e8f2f6c49e04b6e921f1ecd30e12f06fb75e585f"
+broccoli-uglify-sourcemap@^2.1.1:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/broccoli-uglify-sourcemap/-/broccoli-uglify-sourcemap-2.2.0.tgz#2ff49389bdf342a550c3596750ba2dde95a8f7d4"
   dependencies:
+    async-promise-queue "^1.0.4"
     broccoli-plugin "^1.2.1"
     debug "^3.1.0"
     lodash.defaultsdeep "^4.6.0"
@@ -2440,8 +2441,9 @@ broccoli-uglify-sourcemap@^2.0.0:
     mkdirp "^0.5.0"
     source-map-url "^0.4.0"
     symlink-or-copy "^1.0.1"
-    uglify-es "^3.1.3"
+    terser "^3.7.5"
     walk-sync "^0.3.2"
+    workerpool "^2.3.0"
 
 broccoli-writer@~0.1.1:
   version "0.1.1"
@@ -2952,7 +2954,7 @@ combined-stream@^1.0.5, combined-stream@~1.0.5:
   dependencies:
     delayed-stream "~1.0.0"
 
-commander@2.12.2, commander@^2.6.0, commander@^2.9.0, commander@~2.12.1:
+commander@2.12.2, commander@^2.6.0, commander@^2.9.0:
   version "2.12.2"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.12.2.tgz#0f5946c427ed9ec0d91a46bb9def53e54650e555"
 
@@ -2961,6 +2963,10 @@ commander@2.8.x:
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.8.1.tgz#06be367febfda0c330aa1e2a072d3dc9762425d4"
   dependencies:
     graceful-readlink ">= 1.0.0"
+
+commander@~2.17.1:
+  version "2.17.1"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
 
 common-tags@^1.4.0:
   version "1.6.0"
@@ -3704,10 +3710,10 @@ ember-cli-typescript@^1.4.0:
     walk-sync "^0.3.2"
 
 ember-cli-uglify@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/ember-cli-uglify/-/ember-cli-uglify-2.0.0.tgz#b096727d7d1718acc9bfe5d1bc81ce26cafdf6ca"
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-uglify/-/ember-cli-uglify-2.1.0.tgz#4a0641fe4768d7ab7d4807aca9924cc77c544184"
   dependencies:
-    broccoli-uglify-sourcemap "^2.0.0"
+    broccoli-uglify-sourcemap "^2.1.1"
     lodash.defaultsdeep "^4.6.0"
 
 ember-cli-valid-component-name@^1.0.0:
@@ -9788,7 +9794,7 @@ source-map-support@^0.4.0, source-map-support@^0.4.15:
   dependencies:
     source-map "^0.5.6"
 
-source-map-support@^0.5.9:
+source-map-support@^0.5.9, source-map-support@~0.5.6:
   version "0.5.9"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.9.tgz#41bc953b2534267ea2d605bccfa7bfa3111ced5f"
   dependencies:
@@ -10187,6 +10193,14 @@ term-size@^1.2.0:
   dependencies:
     execa "^0.7.0"
 
+terser@^3.7.5:
+  version "3.8.2"
+  resolved "https://registry.yarnpkg.com/terser/-/terser-3.8.2.tgz#48b880f949f8d038aca4dfd00a37c53d96ecf9fb"
+  dependencies:
+    commander "~2.17.1"
+    source-map "~0.6.1"
+    source-map-support "~0.5.6"
+
 testem@^2.2.0:
   version "2.9.3"
   resolved "https://registry.yarnpkg.com/testem/-/testem-2.9.3.tgz#df754edd22a8e30ef8cd110d5a234a28060e143b"
@@ -10438,13 +10452,6 @@ typescript@^3.0.1:
 uc.micro@^1.0.1, uc.micro@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/uc.micro/-/uc.micro-1.0.3.tgz#7ed50d5e0f9a9fb0a573379259f2a77458d50192"
-
-uglify-es@^3.1.3:
-  version "3.3.4"
-  resolved "https://registry.yarnpkg.com/uglify-es/-/uglify-es-3.3.4.tgz#2d592678791e5310456bbc95e952139e3b13167a"
-  dependencies:
-    commander "~2.12.1"
-    source-map "~0.6.1"
 
 uglify-js@^2.6:
   version "2.8.29"
