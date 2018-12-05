@@ -12,20 +12,23 @@
     "start": "ember serve",
     "test": "ember test",
     "test:all": "ember try:each",
-    "travis-deploy-once": "travis-deploy-once",
     "semantic-release": "semantic-release",
     "prepublishOnly": "ember ts:precompile",
     "postpublish": "ember ts:clean"
   },
-  "repository": "https://github.com/levanto-financial/ember-oembed.git",
+  "repository": "https://github.com/mike-north/ember-oembed.git",
   "engines": {
     "node": "6.* || 8.* || >= 10.*"
   },
   "author": "Mike North <michael.l.north@gmail.com> (http://mike.works)",
   "license": "MIT",
   "devDependencies": {
+    "@commitlint/cli": "7.2.1",
+    "@commitlint/config-conventional": "7.1.2",
+    "@commitlint/travis-cli": "7.2.1",
     "@ember-decorators/babel-transforms": "^2.0.0",
-    "@mike-north/js-lib-semantic-release-config": "^0.0.0-development",
+    "@mike-north/js-lib-renovate-config": "1.1.1",
+    "@mike-north/js-lib-semantic-release-config": "1.0.1",
     "@types/ember": "^2.8.32",
     "@types/ember-data": "^2.14.18",
     "@types/ember-qunit": "^3.0.3",
@@ -56,14 +59,14 @@
     "ember-resolver": "^5.0.1",
     "ember-source": "https://s3.amazonaws.com/builds.emberjs.com/canary/shas/9ab6fae0e49e510260d321dcdf5a685190a333d4.tgz",
     "ember-source-channel-url": "^1.0.1",
-    "ember-try": "^1.0.0",
+    "ember-try": "^1.1.0",
     "eslint-plugin-ember": "^5.0.0",
     "eslint-plugin-node": "^6.0.1",
+    "husky": "^1.2.0",
     "json-typescript": "^1.0.1",
     "loader.js": "^4.2.3",
     "qunit-dom": "^0.7.1",
     "semantic-release": "^15.9.9",
-    "travis-deploy-once": "^5.0.2",
     "typescript": "^3.0.1",
     "typescript-eslint-parser": "^18.0.0"
   },
@@ -83,6 +86,16 @@
   "ember-addon": {
     "demoURL": "ember-oembed-demo.herokuapp.com",
     "configPath": "tests/dummy/config"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "./node_modules/.bin/commitlint -e $HUSKY_GIT_PARAMS"
+    }
   },
   "release": {
     "extends": "@mike-north/js-lib-semantic-release-config"
