@@ -53,7 +53,7 @@ install:
   - yarn install --no-lockfile --non-interactive
 
 script:
-  - node_modules/.bin/ember try $EMBER_TRY_SCENARIO
+  - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO
 
 branches:
   except:
