@@ -4573,10 +4573,10 @@ ember-cli-typescript-blueprints@^1.0.0:
     inflection "^1.12.0"
     silent-error "^1.1.0"
 
-ember-cli-typescript@1.4.2:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/ember-cli-typescript/-/ember-cli-typescript-1.4.2.tgz#4fad637cf0b74a4452611030419c9a97a5bddb41"
-  integrity sha512-mnSKFzqWviJha6eJRd7p5OJgnNxvbNbvdy75lT94AJWZxm9YQ3A1TgInpcPocITdKfM17WJzpuCr4wmMQiwJ1w==
+ember-cli-typescript@1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-typescript/-/ember-cli-typescript-1.5.0.tgz#076efe723c52ca2c8f0cdc9ee2ef640e941aa2c4"
+  integrity sha512-yE4Wa/JFOrEwkcPSAZ9bKMn/NieqIMz6rWMZJwAAiNTS7cT9U8ZcBvctuO0sGhfRR6A/0pdwiaqp9vqbOBaSFQ==
   dependencies:
     broccoli-funnel "^2.0.1"
     broccoli-merge-trees "^2.0.0"
