@@ -68,7 +68,7 @@
     "qunit-dom": "0.8.2",
     "semantic-release": "15.9.14",
     "typescript": "3.2.1",
-    "typescript-eslint-parser": "18.0.0"
+    "typescript-eslint-parser": "21.0.2"
   },
   "keywords": [
     "ember-addon",
