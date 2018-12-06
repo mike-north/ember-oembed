@@ -10,32 +10,28 @@ cache:
 env:
   global:
     - JOBS=1
-
 stages:
-  - 'Tests'
-  - 'Additional Tests'
-  - 'Canary Tests'
-  - name: 'Deploy'
+  - Tests
+  - Additional Tests
+  - Canary Tests
+  - name: Deploy
     if: branch = master AND type = push
-
 jobs:
   fail_fast: true
   allow_failures:
     - env: EMBER_TRY_SCENARIO=ember-canary
   include:
-    - stage: 'Tests'
-      name: 'Tests'
+    - stage: Tests
+      name: Tests
       install:
         - yarn install --non-interactive
       script:
         - yarn lint:js
         - ember test
-
-    - name: 'Floating Dependencies'
+    - name: Floating Dependencies
       script:
         - ember test
-
-    - stage: 'Additional Tests'
+    - stage: Additional Tests
       node_js: 10
       env: EMBER_TRY_SCENARIO=ember-lts-2.12
     - env: EMBER_TRY_SCENARIO=ember-lts-2.16
@@ -44,24 +40,20 @@ jobs:
     - env: EMBER_TRY_SCENARIO=ember-beta
     - env: EMBER_TRY_SCENARIO=ember-canary
     - env: EMBER_TRY_SCENARIO=ember-default
-
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash
   - export PATH=$HOME/.yarn/bin:$PATH
-
 install:
   - yarn install --no-lockfile --non-interactive
-
 script:
   - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO
-
 branches:
   except:
     - "/^v\\d+\\.\\d+\\.\\d+$/"
 deploy:
   provider: heroku
   api_key:
-    secure: JvB+Ct0sdg6e5ERIu34E/5WFFBAgCpqgW7pxY3z+nCXWEtCKUwWyt+Y66yU5wjSDHlDLVYnudTmGNQMUvyKiZ/OQ0bJ7FU6OoIrcfoKGqA9+REDqkPUEiQQ0/eYNwoM+JQ2qxP4RXbb8u/ghG4S4IYbIEEMAVK75VKiHj7Kp5fVRtdwK2PkcheFz3opvCIb5K1mARLbz00sRIXEO/UjHtlgJFMHTtXSAYXJhPyKbE6JMrzc6UrGjukGaFHgbNjI3p39WIUceWE+Af1lWCbLQQ79qHYJHnr0pVuLuqXXSMO/SukaOwArAnFb4RVtw6n/7+ivwEj/2wLbMLs+c1ItEymws96Os5D8o9LfH0RrvO0OZBT/OD0jC+AXGbszsfZ0K9ONFQtfUILIe2dRxBikBGQyAlfs4XUImHKPksDo6lAqgrHWYyIaZS7EnWgjW2vodMHKqr9UVbGEDv03R43QWS+WUkODroW6dk3e7kxWmzy+3Fehimy6YQhlY48M6oGGQxgq4tr4FF2ersJpe4Hwv2MJdC10NNm1YPNpzAxw6PStSaLjB0NjgPLC+PfzkIYZTxOJRzp+cnI83l0SD4CZzLh/F7wyV/8Er0y4vSXbsFbwTvK1Jtvvs0e4k2d6R2AkVlVGOawshYqgMdOYTUVhRLMVWkrGnrB9wSf0P9qlDWB0=
+    secure: tqUSZtyOHwNSaZRu4YaYmbqKULEL4WmrxhTgecpSvMIhG0jcVrnEdPXYgxnxP3jVHxsHeQchgq8/Jkp7KKDj4d0sYOIsOq2rXRrphm1FW3qFKeEj/weygg4winwp8LFtS5Pbsp6CZaLIWfe1KYZeK/1TQQDz/F9Yt6D6X6OODQMA3peAbu1PJ3CmdTpjNG/n9C1Rzi4dyHduKICDbbP5VJf8mM5C6DsKkPwyIKx4tOMfHhurvVT5Swn+1QMQsyDx+5stIv9zrPNlfN6Ci+u0n0IAQHX5kWZd5hWhrDee1RsdwoAH8WZxoBxs0t48FIHVYpuqjAdhJVXj5/GPNjulUrRACMlP/8wgiCBK9g8ludpQOJE2XLl6fEifxFqEhc+HELfNFrjaQIUjGGGOVDKMuPsvG2VZlJlgKWuWYOFudd8iyofuaA3XxaJ3sqSzHSs3L72zRedA1mIZWkwyk3krbPQtWydFlhwLbwgLlMO6u7JGkokiS0v2z9EEfhBmAel9X4WIUTvpFIC9BdFaW28tYkIbxFZs32DVys+Jq99G0HISZ38WABpMclZn55AUc3GEQ5P23aOy6Stil6PQGZ2JhpAlTqfo8AU+OUo9svjkep9mAXbhwI5fW+GMWlYtv29beWdPO7eEjhN1Zu96juUgx8FkdzZaP8+jeGEKJ1xfCdg=
   app: ember-oembed-demo
   on:
     repo: mike-north/ember-oembed
