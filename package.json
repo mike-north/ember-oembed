@@ -63,7 +63,7 @@
     "eslint-plugin-ember": "5.4.0",
     "eslint-plugin-node": "6.0.1",
     "husky": "1.2.0",
-    "json-typescript": "1.0.1",
+    "json-typescript": "1.1.0",
     "loader.js": "4.7.0",
     "qunit-dom": "0.8.2",
     "semantic-release": "15.9.14",
