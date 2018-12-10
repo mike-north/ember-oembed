@@ -65,7 +65,7 @@
     "husky": "1.2.0",
     "json-typescript": "1.1.0",
     "loader.js": "4.7.0",
-    "qunit-dom": "0.8.2",
+    "qunit-dom": "0.8.3",
     "semantic-release": "15.12.4",
     "typescript": "3.2.1",
     "typescript-eslint-parser": "18.0.0"
