@@ -871,10 +871,10 @@
     babel-runtime "6.26.0"
     execa "0.9.0"
 
-"@ember-decorators/babel-transforms@4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@ember-decorators/babel-transforms/-/babel-transforms-4.0.0.tgz#a1358f5d185c3e4f722b5b30d5bae6e9884cae07"
-  integrity sha512-67bJ5EXwMYd96WiiloSsgcvZplSUKSKl20rmjFve3+AXWislTQbnTKjwMPNMjKeajEALwmC7if+EkQUoCqrUog==
+"@ember-decorators/babel-transforms@3.1.5":
+  version "3.1.5"
+  resolved "https://registry.yarnpkg.com/@ember-decorators/babel-transforms/-/babel-transforms-3.1.5.tgz#6df543f7f1d862ad54d05555d548805e032f6514"
+  integrity sha512-dTcpIylGj+gU+GM3Se0mVn/NGcIFLDTJYE0h04WtBT+Szon8y0SKFPO4pyEz+NINNU6w+PRP/Y7GsT8txxdrYg==
   dependencies:
     "@babel/plugin-proposal-class-properties" "^7.1.0"
     "@babel/plugin-proposal-decorators" "^7.1.2"
@@ -1267,22 +1267,23 @@
   dependencies:
     "@types/estree" "*"
 
-"@types/ember-data@^2.14.18":
-  version "2.14.18"
-  resolved "https://registry.yarnpkg.com/@types/ember-data/-/ember-data-2.14.18.tgz#885c668552fcb692f1f02fa564a16f3af925088b"
-  integrity sha512-VWW0h+kgZYm3sFymGsGa1C2Bb5Odj2oqTRVwnhRjLhg3u8mo3PkHbSixeuL1LhxKKSUMYP22WB0w/rrjoLSJUQ==
+"@types/ember-data@2.14.20":
+  version "2.14.20"
+  resolved "https://registry.yarnpkg.com/@types/ember-data/-/ember-data-2.14.20.tgz#33c6afb9185a8e6ed1038a7ec6f147e6f8170f4b"
+  integrity sha512-q5TBL/CXSjGulQ/yQ5fvozBRuMYLGsOlailUFLW9Hsq94xNEPBVzMHJjKWagI9tsQpBaYfbvrSyJ0UC4ozPz2A==
   dependencies:
+    "@types/ember" "^2"
     "@types/rsvp" "*"
 
-"@types/ember-qunit@^3.0.3":
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/@types/ember-qunit/-/ember-qunit-3.0.3.tgz#915ff520f7e3e53141bfc41d022f15690830ae9a"
-  integrity sha512-RRSOl3p6SMSra7dRBPGmAvivfQl/PxZ0uZBf6gNSjk6V9koo6m1b2/MvK7GfXFfeOQfhOqbYCwTl/Y3dR7REvw==
+"@types/ember-qunit@3.4.4":
+  version "3.4.4"
+  resolved "https://registry.yarnpkg.com/@types/ember-qunit/-/ember-qunit-3.4.4.tgz#c480b941e554e16d9cb0ea19f80eb37ca50ef541"
+  integrity sha512-BeR+045sYh1hYAHZOuCm8uIzoL367BkvD2YSa+yKEZll+FbB7OPRrv/qNRNNziB4YEgKihj4uKMomzLdCaUGxw==
   dependencies:
     "@types/ember" "*"
     "@types/ember-test-helpers" "*"
 
-"@types/ember-test-helpers@*", "@types/ember-test-helpers@^0.7.1":
+"@types/ember-test-helpers@*":
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/@types/ember-test-helpers/-/ember-test-helpers-0.7.1.tgz#14b9f132e9c60c2dfaf7a10ace937bfb7157fb26"
   integrity sha512-ypEz7Hly/IU9pB2fq5riY+tS5CVmVMPf4Q6Ff7jaxMVOtxrD4ZuE2LmAHQzn2ofywAtnLla9j90aIU/WGPkdxg==
@@ -1292,7 +1293,17 @@
     "@types/jquery" "*"
     "@types/rsvp" "*"
 
-"@types/ember-testing-helpers@^0.0.3":
+"@types/ember-test-helpers@0.7.2":
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/@types/ember-test-helpers/-/ember-test-helpers-0.7.2.tgz#e6bd2f5cc3936677e1ee81b70be85ed2b53558bf"
+  integrity sha512-fWt7oHV4tWfBN73H4FQ6Pc7JU1lLGdu4OpfeFEeyiUbHPyA6P0lldxxEsATaVgnQ7mUXSo40xgwLwkhVexKA8w==
+  dependencies:
+    "@types/ember" "^2"
+    "@types/htmlbars-inline-precompile" "*"
+    "@types/jquery" "*"
+    "@types/rsvp" "*"
+
+"@types/ember-testing-helpers@0.0.3":
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/@types/ember-testing-helpers/-/ember-testing-helpers-0.0.3.tgz#1a6cfc484b63d19ddd822c87e4dd710597db17d9"
   integrity sha512-QG3QBBR7PFzz3zhLTbsZWBgk3cNQIZYVG6rbXKMM36+YP3dcSkkWQ6CRTyQImUIfgAkYPMaWqGlGEtkuanq3Bg==
@@ -1300,7 +1311,7 @@
     "@types/jquery" "*"
     "@types/rsvp" "*"
 
-"@types/ember@*", "@types/ember@^2.8.32":
+"@types/ember@*":
   version "2.8.32"
   resolved "https://registry.yarnpkg.com/@types/ember/-/ember-2.8.32.tgz#258bac52403b68baabfa3fff422cd2bb73f7d77d"
   integrity sha512-f91jn4X7l2oG1CP2vcfiOtXGCBzVJUPZ9xQezy2VB90fRPCSixCAL4PV0batNAlQsNTSk8W6z9vJVBaGWsxoXA==
@@ -1309,12 +1320,27 @@
     "@types/jquery" "*"
     "@types/rsvp" "*"
 
-"@types/ember__test-helpers@^0.7.0":
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/@types/ember__test-helpers/-/ember__test-helpers-0.7.0.tgz#0c0e86cb39dbe5e97bb4f09a898dcde0f5c1966a"
-  integrity sha512-MRFxAjrVh1yrbVbWuIcpac45icLhHlQSQkIklD4qXVdxYGujRDFPaOiqpto/bamNniD7aj17e6A8A9Scw5td/Q==
+"@types/ember@2.8.34", "@types/ember@^2":
+  version "2.8.34"
+  resolved "https://registry.yarnpkg.com/@types/ember/-/ember-2.8.34.tgz#f34fe35a4737185134be90856e7209d1555123bb"
+  integrity sha512-u8RyiQqdGSeHi0ewKwRoXkL/ig9RmmIoWyxrGuvbI26/v1HYADqpykybtF5Xy7kvNETBpTLL1s0qEb2w4LbXQQ==
+  dependencies:
+    "@types/handlebars" "*"
+    "@types/jquery" "*"
+    "@types/rsvp" "*"
+
+"@types/ember__error@*":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@types/ember__error/-/ember__error-3.0.2.tgz#a30c0e51215feaaa7a32e341c5a04bd601a01d1b"
+  integrity sha512-U1IsKAfoqgNTAQ7rojbAmF8ynQaovfHP9Kff1lCB1A1FLq+vtQ81CzaiEHgWWAlPfbqrFtBIYD0rwehEQ1ofRg==
+
+"@types/ember__test-helpers@0.7.6":
+  version "0.7.6"
+  resolved "https://registry.yarnpkg.com/@types/ember__test-helpers/-/ember__test-helpers-0.7.6.tgz#f26050fc74cd8ce111ee9e01864a293d6a9ac7ac"
+  integrity sha512-TEIitF7M984drIuK1iKHWfU7BLvdp4qakC7Qwmz88HoJxjdMKHHYAIIVO+SPZdXBCmPjOmCs87bz2okMs9nU2Q==
   dependencies:
     "@types/ember" "*"
+    "@types/ember__error" "*"
     "@types/htmlbars-inline-precompile" "*"
 
 "@types/estree@*":
@@ -1347,12 +1373,12 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.40.tgz#2d69cefbc090cb0bb824542a4c575b14dde7d3aa"
   integrity sha512-M3HHoXXndsho/sTbQML2BJr7/uwNhMg8P0D4lb+UsM65JQZx268faiz9hKpY4FpocWqpwlLwa8vevw8hLtKjOw==
 
-"@types/qunit@^2.5.2":
+"@types/qunit@2.5.3":
   version "2.5.3"
   resolved "https://registry.yarnpkg.com/@types/qunit/-/qunit-2.5.3.tgz#e7df363b5e1d1ba034b5fdd34b560d5ec0914225"
   integrity sha512-b9xNH1wBOnY+yiCT2DiAC0yi7GCF5g6whiAFA/dpd9RtL/Jn2XR7e4yyeAQwH3TUeF00zikmYqYxS0K8+EKTKQ==
 
-"@types/rsvp@*", "@types/rsvp@^4.0.2":
+"@types/rsvp@*", "@types/rsvp@4.0.2":
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/@types/rsvp/-/rsvp-4.0.2.tgz#bf9f72eaa6771292638a85bb8ce1db97e754b371"
   integrity sha512-48ZwxFD1hdBj8QMOSNGA2kYuo3+SKh8OEYh5cMi7cPRZXBF9jwVPV4yqA7EcJTNlAJL0v99pEUYetl0TsufMQA==
