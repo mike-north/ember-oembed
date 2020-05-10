@@ -60,7 +60,7 @@
     "ember-source": "https://s3.amazonaws.com/builds.emberjs.com/canary/shas/9ab6fae0e49e510260d321dcdf5a685190a333d4.tgz",
     "ember-source-channel-url": "1.2.0",
     "ember-try": "1.4.0",
-    "eslint-plugin-ember": "8.5.0",
+    "eslint-plugin-ember": "8.5.1",
     "eslint-plugin-node": "11.1.0",
     "husky": "1.2.1",
     "json-typescript": "1.1.0",
