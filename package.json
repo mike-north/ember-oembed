@@ -49,7 +49,7 @@
     "ember-cli-shims": "1.2.0",
     "ember-cli-typescript": "1.5.0",
     "ember-cli-uglify": "3.0.0",
-    "ember-data": "3.20.0",
+    "ember-data": "3.20.1",
     "ember-decorators": "4.0.3",
     "ember-disable-prototype-extensions": "1.1.3",
     "ember-export-application-global": "2.0.1",
