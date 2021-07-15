@@ -1659,10 +1659,10 @@
   resolved "https://registry.yarnpkg.com/@types/cors/-/cors-2.8.12.tgz#6b2c510a7ad7039e98e7b8d3d6598f4359e5c080"
   integrity sha512-vt+kDhq/M2ayberEtJcIN/hxXy1Pk+59g2FV/ZQceeaTyCtCucjL2Q7FXlFjtWn4n15KCr1NE2lNNFhp0lEThw==
 
-"@types/ember-data@3.16.14":
-  version "3.16.14"
-  resolved "https://registry.yarnpkg.com/@types/ember-data/-/ember-data-3.16.14.tgz#77bb0f33c4ebe44d36f46132eb5187fa3531f83b"
-  integrity sha512-U+MDramAi0oGSlvmdHtFBlIsgNZGMibkKlidl1Eq3x7FESS+qY6xTRVEORQV/qia6llleYCTDw+dD0eIS6SBKQ==
+"@types/ember-data@3.16.15":
+  version "3.16.15"
+  resolved "https://registry.yarnpkg.com/@types/ember-data/-/ember-data-3.16.15.tgz#48f29e9cb93c0c587f25ddb8bb5e1d83809ec85c"
+  integrity sha512-6zT2+x+R7HnqEeZpRYMK8MjQB+HKKruPu5nxX6UsW27QlnOaWc37Q5bBbD7xOGZX3DwgMe6uV3OV3dQikUp7GA==
   dependencies:
     "@types/ember" "*"
     "@types/ember__object" "*"
@@ -2004,10 +2004,15 @@
     "@types/glob" "*"
     "@types/node" "*"
 
-"@types/rsvp@*", "@types/rsvp@4.0.3":
+"@types/rsvp@*":
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/@types/rsvp/-/rsvp-4.0.3.tgz#4a1223158453257bce09d42b9eef7cfa6d257482"
   integrity sha512-OpRwxbgx16nL/0/7ol0WoLLyLaMXBvtPOHjqLljnzAB/E7Qk1wtjytxgBhOTBMZvuLXnJUqfnjb4W/QclNFvSA==
+
+"@types/rsvp@4.0.4":
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/@types/rsvp/-/rsvp-4.0.4.tgz#55e93e7054027f1ad4b4ebc1e60e59eb091e2d32"
+  integrity sha512-J3Ol++HCC7/hwZhanDvggFYU/GtxHxE/e7cGRWxR04BF7Tt3TqJZ84BkzQgDxmX0uu8IagiyfmfoUlBACh2Ilg==
 
 "@types/serve-static@*":
   version "1.13.10"
