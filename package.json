@@ -58,7 +58,7 @@
     "ember-qunit-decorators": "1.5.0",
     "ember-resolver": "8.0.3",
     "ember-source": "https://s3.amazonaws.com/builds.emberjs.com/canary/shas/9ab6fae0e49e510260d321dcdf5a685190a333d4.tgz",
-    "ember-source-channel-url": "1.2.0",
+    "ember-source-channel-url": "3.0.0",
     "ember-try": "1.4.0",
     "eslint-plugin-ember": "10.5.5",
     "eslint-plugin-node": "11.1.0",
